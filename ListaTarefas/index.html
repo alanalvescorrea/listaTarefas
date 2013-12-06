@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+
+    <head>
+        <meta charset="utf-8">
+        <!-- JQUERY --> 
+        <link type="text/css"href="jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script>
+        <script type="text/javascript" src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
+
+        <!-- TWITTER BOOTSTRAP CSS --> 
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" /> 
+
+        <!-- TWITTER BOOTSTRAP JS --> 
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+       
+        <!-- ESTILO -->
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <link rel="stylesheet" type="text/css" href="estiloForm.css">
+
+        <!-- SCRIPT DA LISTA DE TAREFAS -->
+        <script language="JavaScript" type="text/javascript">   
+            $(document).ready(function(){
+                var next = 1;
+                $(".add-more").click(function(e){
+                    e.preventDefault();
+                    var addto = "#field" + next;
+                    var addRemove = "#field" + (next);
+                    next = next + 1;
+                    var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+                    var newInput = $(newIn);
+                    var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+                    var removeButton = $(removeBtn);
+                    $(addto).after(newInput);
+                    $(addRemove).after(removeButton);
+                    $("#field" + next).attr('data-source',$(addto).attr('data-source'));
+                    $("#count").val(next);  
+        
+                    $('.remove-me').click(function(e){
+                        e.preventDefault();
+                        var fieldNum = this.id.charAt(this.id.length-1);
+                        var fieldID = "#field" + fieldNum;
+                        $(this).remove();
+                        $(fieldID).remove();
+                    });
+                });
+            });
+        </script> 
+
+    </head>
+
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <h1 class="text-center login-title">Lista de tarefas</h1>
+                    <div class="account-wall">
+
+                        <p class="profile-name">Alan Alves Correa</p>
+                        <span class="profile-email">Tarefas pendentes</span>
+                        <div class="controls" id="profs"> 
+                            <form class="input-append">
+                                <div id="field"><input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="anote sua tarefa aqui" data-items="8"/><button id="b1" class="btn add-more" type="button">+</button></div>
+                            </form>
+                            <br>
+                            <small>Clique + para adicionar uma nova tarefa :)</small>
+                        </div>
+                    </div>
+                    <a href="#" class="text-center new-account">Polosap - Tópicos avançados em programação</a>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
